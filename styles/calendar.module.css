@@ -1,0 +1,41 @@
+.icon {
+  font-size: 24px;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  font-family: dripicons-v2 !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  text-transform: none !important;
+  font-variant: normal !important;
+  font-variant-ligatures: normal !important;
+  font-variant-caps: normal !important;
+  font-variant-numeric: normal !important;
+  font-variant-east-asian: normal !important;
+}
+
+.buttonB {
+  width: 32px;
+  padding: 3px;
+  border-radius: 50%;
+  border-color: rgb(216, 216, 216);
+}
+
+/* .modal {
+	padding: 5%;
+	border-radius: none;
+	border:none;
+} */
+
+/* .in-next-month {
+  color: rgb(184, 184, 184);
+}
+
+.today {
+  background-color: #009e6c;
+  color: #fff;
+}
+
+
+.modal-content {
+	padding: 10px;
+} */
