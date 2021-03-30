@@ -9,6 +9,7 @@ import { useState } from 'react'
 export function Calendar(props) {
   const [myDate, setMyDate] = useState({})
   const [savedate, useSavedate] = useState(props.savedate)
+	const [savedate1, useSavedate1] = useState(props.savedate)
   const {
     calendarRows,
     selectedDate,
@@ -19,6 +20,7 @@ export function Calendar(props) {
     getPrevMonth,
   } = useCalendar()
   const postDate = async (event) => {
+		
     event.preventDefault()
 
     const res = await fetch('/api/savedDate', {
@@ -28,8 +30,8 @@ export function Calendar(props) {
       },
       method: 'POST',
     })
-
-    const result = await res.json()
+    console.log('dod')
+		useSavedate(savedate1)
   }
   const dateClickHandlerq = async (date) => {
     try {
@@ -52,7 +54,9 @@ export function Calendar(props) {
       </Button>
       <div className={classes.main}>
         <ButtonToolbar
-          className={ classes.textData + " justify-content-between text-primary "}
+          className={
+            classes.textData + ' justify-content-between text-primary '
+          }
           aria-label="Toolbar with Button groups"
         >
           <button className={classes.arrows} onClick={getPrevMonth}>
@@ -107,17 +111,16 @@ export function Calendar(props) {
                           return (
                             <td key={col.stringDate}>
                               <Button
+                                type="submit"
                                 onClick={(event) => {
-                                  useSavedate(col.stringDate)
+                                  useSavedate1(col.stringDate)
                                   setMyDate({
                                     dataS: col.dataS,
                                     month: col.month,
                                     year: col.year,
                                   })
                                 }}
-                                variant="outline-warning"
                                 className={classes.todaysDate}
-                                type="submit"
                               >
                                 {col.value}
                               </Button>
@@ -139,8 +142,9 @@ export function Calendar(props) {
                                 key={col.stringDate}
                               >
                                 <Button
+                                  type="submit"
                                   onClick={(event) => {
-                                    useSavedate(col.stringDate)
+                                    useSavedate1(col.stringDate)
                                     setMyDate({
                                       dataS: col.dataS,
                                       month: col.month,
@@ -150,7 +154,6 @@ export function Calendar(props) {
                                   }}
                                   className={classes.buttonData}
                                   variant="outline-primary"
-                                  type="submit"
                                 >
                                   {col.value}
                                 </Button>
