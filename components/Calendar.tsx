@@ -24,9 +24,9 @@ export function Calendar(props) {
     const res = await fetch('/api/savedDate', {
       body: JSON.stringify(myDate),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      method: 'POST'
+      method: 'POST',
     })
 
     const result = await res.json()
@@ -40,14 +40,9 @@ export function Calendar(props) {
   }
   let SelectedMonth = `${
     monthNames[selectedDate.getMonth()]
-  } - ${selectedDate.getFullYear()}`
+  } ${selectedDate.getFullYear()}`
   return (
-    <Modal
-      {...props}
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-      className={'rounded-3'}
-    >
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Button
         variant="outline-primary"
         onClick={props.onHide}
@@ -55,96 +50,123 @@ export function Calendar(props) {
       >
         <div className={classes.icon} data-icon="9" />
       </Button>
-      <ButtonToolbar
-        className="justify-content-between"
-        aria-label="Toolbar with Button groups"
-      >
-        <button className="button" onClick={getPrevMonth}>
-          <div data-icon="l" className={classes.icon} />
-        </button>
+      <div className={classes.main}>
+        <ButtonToolbar
+          className={ classes.textData + " justify-content-between text-primary "}
+          aria-label="Toolbar with Button groups"
+        >
+          <button className={classes.arrows} onClick={getPrevMonth}>
+            <div data-icon="l" className={classes.icon} />
+          </button>
 
-        <p>{SelectedMonth}</p>
-        <button className="button" onClick={getNextMonth}>
-          <div data-icon="m" className={classes.icon} />
-        </button>
-      </ButtonToolbar>
-      <form onSubmit={postDate}>
-        <Table >
-          <thead>
-            <tr>
-              {daysShort.map((day) => (
-                <th key={day}>{day}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {Object.values(calendarRows).map((cols) => {
-              return (
-                <tr key={cols[0].stringDate}>
-                  {cols.map((col) => {
-                    if (col.stringDate === savedate) {
-                      return (
-                        <td
-                          key={col.stringDate}
-                          className={`${
-                            classes[col.classes]
-                          }  text-white`}
-                          onClick={(event) =>
-                            setMyDate({
-                              dataS: col.dataS,
-                              month: col.month,
-                              year: col.year,
-                            })
-                          }
-                        >
-                          <Button className={`${col.classes} shadow-none`}  type="submit">{col.value}</Button>
-                        </td>
-                      )
-                    } else if (col.stringDate === todayFormatted) {
-                      return (
-                        <td
-                          key={col.stringDate}
-                          className={`${
-                            classes[col.classes]
-                          } `}
-                          onClick={(event) => {
-                            useSavedate(col.stringDate)
-                            setMyDate({
-                              dataS: col.dataS,
-                              month: col.month,
-                              year: col.year,
-                            })
-                          }}
-                        >
-                          <Button variant="outline-primary" className="shadow-none border border-5 border-primary" type="submit">{col.value}</Button>
-                        </td>
-                      )
-                    } else if (col.stringDate !== todayFormatted) {
-                      return (
-                        <td
-                          key={col.stringDate}
-                          className={classes[col.classes]}
-                          onClick={(event) => {
-                            useSavedate(col.stringDate)
-                            setMyDate({
-                              dataS: col.dataS,
-                              month: col.month,
-                              year: col.year,
-                            })
-                            console.log(myDate)
-                          }}
-                        >
-                          <Button  className={`${col.classes} shadow-none`} variant="outline-primary" type="submit">{col.value}</Button>
-                        </td>
-                      )
-                    }
-                  })}
+          {SelectedMonth}
+          <button className={classes.arrows} onClick={getNextMonth}>
+            <div data-icon="m" className={classes.icon} />
+          </button>
+        </ButtonToolbar>
+        <form onSubmit={postDate}>
+          <div className={classes.widthTable}>
+            <Table borderless size="sm">
+              <thead>
+                <tr>
+                  <th></th>
+                  {daysShort.map((day) => (
+                    <th key={day} className={classes.textCenter}>
+                      {day}
+                    </th>
+                  ))}
                 </tr>
-              )
-            })}
-          </tbody>
-        </Table>
-      </form>
+              </thead>
+              <tbody className={classes.textData}>
+                {Object.values(calendarRows).map((cols) => {
+                  return (
+                    <tr key={cols[0].stringDate}>
+                      <td className={classes.listTableTd}>
+                        <div className={classes.listTable}>.</div>
+                      </td>
+                      {cols.map((col) => {
+                        if (col.stringDate === savedate) {
+                          return (
+                            <td key={col.stringDate}>
+                              <button
+                                onClick={(event) =>
+                                  setMyDate({
+                                    dataS: col.dataS,
+                                    month: col.month,
+                                    year: col.year,
+                                  })
+                                }
+                                className={classes.buttonDataActiv}
+                                type="submit"
+                              >
+                                {col.value}
+                              </button>
+                            </td>
+                          )
+                        } else if (col.stringDate === todayFormatted) {
+                          return (
+                            <td key={col.stringDate}>
+                              <Button
+                                onClick={(event) => {
+                                  useSavedate(col.stringDate)
+                                  setMyDate({
+                                    dataS: col.dataS,
+                                    month: col.month,
+                                    year: col.year,
+                                  })
+                                }}
+                                variant="outline-warning"
+                                className={classes.todaysDate}
+                                type="submit"
+                              >
+                                {col.value}
+                              </Button>
+                            </td>
+                          )
+                        } else if (col.stringDate !== todayFormatted) {
+                          if (col.classes) {
+                            return (
+                              <td key={col.stringDate}>
+                                <div className={classes.notThisMonth}>
+                                  {col.value}
+                                </div>
+                              </td>
+                            )
+                          } else {
+                            return (
+                              <td
+                                className={classes.notThisMonth}
+                                key={col.stringDate}
+                              >
+                                <Button
+                                  onClick={(event) => {
+                                    useSavedate(col.stringDate)
+                                    setMyDate({
+                                      dataS: col.dataS,
+                                      month: col.month,
+                                      year: col.year,
+                                    })
+                                    console.log(myDate)
+                                  }}
+                                  className={classes.buttonData}
+                                  variant="outline-primary"
+                                  type="submit"
+                                >
+                                  {col.value}
+                                </Button>
+                              </td>
+                            )
+                          }
+                        }
+                      })}
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </Table>
+          </div>
+        </form>
+      </div>
     </Modal>
   )
 }

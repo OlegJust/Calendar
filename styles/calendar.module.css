@@ -20,6 +20,74 @@
   border-color: rgb(216, 216, 216);
 }
 
+.buttonDataActiv {
+	margin: 0  0;
+	padding: 4px;
+	width: 32px;
+	border-radius: 50%;
+	background-color:rgb(56, 105, 241);
+	color: white;
+	border: none;
+}
+.buttonData {
+	color: black;
+	padding: 4px;
+	width: 32px;
+	border-radius: 50%;
+	border: none;
+	
+}
+.notThisMonth {
+	text-align:center ;
+	color:darkgrey;
+	padding: 4px;
+	width: 32px;
+	border-radius: 50%;
+	border: none;
+}
+
+.todaysDate {
+	padding: 4px;
+	width: 32px;
+	border-radius: 50%;
+	background-color:goldenrod;
+	color: white;
+	border: none;
+}
+
+.listTableTd{
+	width: 20px;
+	height: 100%;
+}
+.listTable {
+	border-radius: 6.5px;
+	margin:2px 0  2px;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(56, 105, 241);
+	color: rgb(56, 105, 241);
+}
+.widthTable {
+	width: 300px;
+}
+.textCenter{
+	text-align:center ;
+	font-weight: 500;
+	color: rgb(56, 105, 241);
+}
+.main{
+	padding: 10px 20px 0;
+}
+.arrows{
+	background: none;
+	border: none;
+	color: rgb(56, 105, 241);
+	height: 100%;
+}
+.textData{
+	font-weight: 400;
+	font-family: 'Roboto', sans-serif;
+}
 /* .modal {
 	padding: 5%;
 	border-radius: none;
@@ -39,3 +107,4 @@
 .modal-content {
 	padding: 10px;
 } */
+
