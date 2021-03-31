@@ -9,7 +9,7 @@ import { useState } from 'react'
 export function Calendar(props) {
   const [myDate, setMyDate] = useState({})
   const [savedate, useSavedate] = useState(props.savedate)
-  const [savedate1, useSavedate1] = useState(props.savedate)
+  const [savedateLoading, useSavedateLoading] = useState(props.savedate)
   const {
     calendarRows,
     selectedDate,
@@ -30,7 +30,7 @@ export function Calendar(props) {
       method: 'POST',
     })
 
-    useSavedate(savedate1)
+    useSavedate(savedateLoading)
   }
   const dateClickHandlerq = async (date) => {
     try {
@@ -116,7 +116,7 @@ export function Calendar(props) {
                               <Button
                                 type="submit"
                                 onClick={(event) => {
-                                  useSavedate1(col.stringDate)
+                                  useSavedateLoading(col.stringDate)
                                   setMyDate({
                                     dataS: col.dataS,
                                     month: col.month,
@@ -147,7 +147,7 @@ export function Calendar(props) {
                                 <Button
                                   type="submit"
                                   onClick={(event) => {
-                                    useSavedate1(col.stringDate)
+                                    useSavedateLoading(col.stringDate)
                                     setMyDate({
                                       dataS: col.dataS,
                                       month: col.month,
