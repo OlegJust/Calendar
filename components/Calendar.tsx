@@ -9,7 +9,7 @@ import { useState } from 'react'
 export function Calendar(props) {
   const [myDate, setMyDate] = useState({})
   const [savedate, useSavedate] = useState(props.savedate)
-	const [savedate1, useSavedate1] = useState(props.savedate)
+  const [savedate1, useSavedate1] = useState(props.savedate)
   const {
     calendarRows,
     selectedDate,
@@ -20,7 +20,6 @@ export function Calendar(props) {
     getPrevMonth,
   } = useCalendar()
   const postDate = async (event) => {
-		
     event.preventDefault()
 
     const res = await fetch('/api/savedDate', {
@@ -30,8 +29,8 @@ export function Calendar(props) {
       },
       method: 'POST',
     })
-    
-		useSavedate(savedate1)
+
+    useSavedate(savedate1)
   }
   const dateClickHandlerq = async (date) => {
     try {
@@ -44,7 +43,11 @@ export function Calendar(props) {
     monthNames[selectedDate.getMonth()]
   } ${selectedDate.getFullYear()}`
   return (
-    <Modal {...props} className={classes.modal} aria-labelledby="contained-modal-title-vcenter" centered>
+    <Modal
+      {...props}
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
       <Button
         variant="outline-primary"
         onClick={props.onHide}
