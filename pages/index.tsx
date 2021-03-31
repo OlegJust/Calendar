@@ -20,7 +20,7 @@ export default function Index({ initialContacts }) {
   return (
     <>
       <Button className='shadow-none' variant="primary" onClick={() => setModalShow(true)}>
-        Launch vertically centered modal
+        Calendar
       </Button>
       <Calendar
         show={modalShow}
