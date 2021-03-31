@@ -19,35 +19,37 @@ const monthNamesArr = [
 
 const useCalendar = (daysShort = daysShortArr, monthNames = monthNamesArr) => {
   const today = new Date()
-  const todayFormatted = `${today.getDate()}-${
+  const todayFormatted = `${today.getDate()}-${ // сегодняшний день месяц год (15-3-2021)
     today.getMonth() + 1
   }-${today.getFullYear()}`
-  const daysInWeek = [1, 2, 3, 4, 5, 6, 0]
-  const [selectedDate, setSelectedDate] = useState(today)
-  const selectedMonthLastDate = new Date(
+  const daysInWeek = [1, 2, 3, 4, 5, 6, 0] // дней в неделе
+  const [selectedDate, setSelectedDate] = useState(today) // выбранная дата
+  const selectedMonthLastDate = new Date( //выбранный месяц последний день
     selectedDate.getFullYear(),
     selectedDate.getMonth() + 1,
     0
   )
-  const prevMonthLastDate = new Date(
+  const prevMonthLastDate = new Date(//предыдущий месяц Последняя дата
     selectedDate.getFullYear(),
     selectedDate.getMonth(),
     0
   )
-  const daysInMonth = selectedMonthLastDate.getDate()
-  const firstDayInMonth = new Date(
+  const daysInMonth = selectedMonthLastDate.getDate()//дней в месяце
+  const firstDayInMonth = new Date( //первый день в месяце 
     selectedDate.getFullYear(),
     selectedDate.getMonth(),
     1
-  ).getDay()
-  const startingPoint = daysInWeek.indexOf(firstDayInMonth) + 1
-  let prevMonthStartingPoint =
+  ).getDay() // getDay()Метод возвращает день недели для указанной даты по местному времени, где 0 означает воскресенье.
+  const startingPoint = daysInWeek.indexOf(firstDayInMonth) + 1 // cтартавая позиция в календаре от начала месяца
+  let prevMonthStartingPoint = // начальная точка прошлого месяца 29 // 20< 30 31 1 2 3 4
     prevMonthLastDate.getDate() - daysInWeek.indexOf(firstDayInMonth) + 1
-  let currentMonthCounter = 1
+  	
+		let currentMonthCounter = 1
+		
   let nextMonthCounter = 1
   const rows = 6
   const cols = 7
-  const calendarRows = {}
+  const calendarRows = {}// весь календарь 
 
   for (let i = 1; i < rows + 1; i++) {
     for (let j = 1; j < cols + 1; j++) {
