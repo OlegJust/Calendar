@@ -30,7 +30,7 @@ export function Calendar(props) {
       },
       method: 'POST',
     })
-    console.log('dod')
+    
 		useSavedate(savedate1)
   }
   const dateClickHandlerq = async (date) => {
