@@ -44,7 +44,7 @@ export function Calendar(props) {
     monthNames[selectedDate.getMonth()]
   } ${selectedDate.getFullYear()}`
   return (
-    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
+    <Modal {...props} className={classes.modal} aria-labelledby="contained-modal-title-vcenter" centered>
       <Button
         variant="outline-primary"
         onClick={props.onHide}
